@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <BitmapImage x:Key="OkImage" UriSource="pack://application:,,,/SharedUI_Lib;component/Images/Ok.png"/>
+    <BitmapImage x:Key="CancelImage" UriSource="pack://application:,,,/SharedUI_Lib;component/Images/Cancel.png"/>
+    <BitmapImage x:Key="AddImage" UriSource="pack://application:,,,/SharedUI_Lib;component/Images/Add.png"/>
+    <BitmapImage x:Key="EditImage" UriSource="pack://application:,,,/SharedUI_Lib;component/Images/Edit.png"/>
+    <BitmapImage x:Key="DeleteImage" UriSource="pack://application:,,,/SharedUI_Lib;component/Images/Delete.png"/>
+    <BitmapImage x:Key="InformationImage" UriSource="pack://application:,,,/SharedUI_Lib;component/Images/Information.png"/>
+
+</ResourceDictionary>
