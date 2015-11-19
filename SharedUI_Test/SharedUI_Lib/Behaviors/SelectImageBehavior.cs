@@ -3,7 +3,7 @@ using SharedUI_Lib.Converters;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media.Imaging;
 
 namespace SharedUI_Lib.Behaviors
@@ -19,9 +19,9 @@ namespace SharedUI_Lib.Behaviors
             {
                 var value = (bool)e.NewValue;
                 if (value)
-                    button.AddHandler(Button.ClickEvent, new RoutedEventHandler(OnClick));
+                    button.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OnClick));
                 else
-                    button.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(OnClick));
+                    button.RemoveHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OnClick));
             }
         }
         public static void OnClick(object sender, RoutedEventArgs e)

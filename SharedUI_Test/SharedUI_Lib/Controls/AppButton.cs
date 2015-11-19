@@ -13,7 +13,7 @@ namespace SharedUI_Lib.Controls
 
         #region Private Fields
 
-        private Image _image;
+        private Image image;
 
         #endregion
 
@@ -21,7 +21,7 @@ namespace SharedUI_Lib.Controls
 
         public AppButton()
         {
-            this.DefaultStyleKey = typeof(AppButton);
+            DefaultStyleKey = typeof(AppButton);
         }
 
         #endregion
@@ -49,9 +49,9 @@ namespace SharedUI_Lib.Controls
 
         public override void OnApplyTemplate()
         {
-            _image = this.GetTemplateChild("PART_Image") as Image;
+            image = GetTemplateChild("PART_Image") as Image;
             base.OnApplyTemplate();
-            this.ApplyButtonType();
+            ApplyButtonType();
         }
 
         #endregion
@@ -60,53 +60,53 @@ namespace SharedUI_Lib.Controls
 
         private void ApplyButtonType()
         {
-            if (_image == null)
+            if (image == null)
                 return;
-            switch (this.ButtonType)
+            switch (ButtonType)
             {
                 case AppButtonType.Default:
                     break;
                 case AppButtonType.Ok:
-                    this.Content = "OK";
-                    _image.SetValue(Image.SourceProperty, this.GetImage(ImageType.Ok));
+                    Content = "OK";
+                    image.SetValue(Image.SourceProperty, GetImage(ImageType.Ok));
                     break;
                 case AppButtonType.Yes:
-                    this.Content = "Ja";
-                    _image.SetValue(Image.SourceProperty, this.GetImage(ImageType.Ok));
+                    Content = "Ja";
+                    image.SetValue(Image.SourceProperty, GetImage(ImageType.Ok));
                     break;
                 case AppButtonType.Cancel:
-                    this.Content = "Abbrechen";
-                    _image.SetValue(Image.SourceProperty, this.GetImage(ImageType.Cancel));
+                    Content = "Abbrechen";
+                    image.SetValue(Image.SourceProperty, GetImage(ImageType.Cancel));
                     break;
                 case AppButtonType.No:
-                    this.Content = "Nein";
-                    _image.SetValue(Image.SourceProperty, this.GetImage(ImageType.Cancel));
+                    Content = "Nein";
+                    image.SetValue(Image.SourceProperty, GetImage(ImageType.Cancel));
                     break;
                 case AppButtonType.Close:
-                    this.Content = "Schließen";
-                    _image.SetValue(Image.SourceProperty, this.GetImage(ImageType.Cancel));
+                    Content = "Schließen";
+                    image.SetValue(Image.SourceProperty, GetImage(ImageType.Cancel));
                     break;
                 case AppButtonType.Add:
-                    this.Content = "Neu";
-                    _image.SetValue(Image.SourceProperty, this.GetImage(ImageType.Add));
+                    Content = "Neu";
+                    image.SetValue(Image.SourceProperty, GetImage(ImageType.Add));
                     break;
                 case AppButtonType.Delete:
-                    this.Content = "Löschen";
-                    _image.SetValue(Image.SourceProperty, this.GetImage(ImageType.Delete));
+                    Content = "Löschen";
+                    image.SetValue(Image.SourceProperty, GetImage(ImageType.Delete));
                     break;
                 case AppButtonType.Edit:
-                    this.Content = "Bearbeiten";
-                    _image.SetValue(Image.SourceProperty, this.GetImage(ImageType.Edit));
+                    Content = "Bearbeiten";
+                    image.SetValue(Image.SourceProperty, GetImage(ImageType.Edit));
                     break;
             }
-            if (this.ButtonType != AppButtonType.Default)
-                _image.Visibility = System.Windows.Visibility.Visible;
+            if (ButtonType != AppButtonType.Default)
+                image.Visibility = Visibility.Visible;
         }
 
-        private BitmapImage GetImage(ImageType image)
+        private BitmapImage GetImage(ImageType imagetype)
         {
             var assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
-            var uriString = string.Format("pack://application:,,,/{0};component/Images/{1}.png", assemblyName, image.ToString());
+            var uriString = $"pack://application:,,,/{assemblyName};component/Images/{imagetype.ToString()}.png";
             var uri = new Uri(uriString, UriKind.Absolute);
             return new BitmapImage(uri);
         }

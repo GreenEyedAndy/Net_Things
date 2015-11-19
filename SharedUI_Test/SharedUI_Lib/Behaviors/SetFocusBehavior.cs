@@ -33,11 +33,11 @@ namespace SharedUI_Lib.Behaviors
             {
                 if (value != null)
                 {
-                    element.AddHandler(Button.ClickEvent, new RoutedEventHandler(OnClick));
+                    element.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OnClick));
                 }
                 else
                 {
-                    element.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(OnClick));
+                    element.RemoveHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OnClick));
                 }
             }
         }
@@ -62,7 +62,7 @@ namespace SharedUI_Lib.Behaviors
         private static void OnLostFocus(object sender, RoutedEventArgs e)
         {
             var element = sender as Control;
-            element.Background = element.Tag as Brush;
+            if (element != null) element.Background = element.Tag as Brush;
         }
     }
 }

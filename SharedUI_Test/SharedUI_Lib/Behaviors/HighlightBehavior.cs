@@ -31,14 +31,14 @@ namespace SharedUI_Lib.Behaviors
             {
                 if (value)
                 {
-                    element.AddHandler(Control.GotFocusEvent, new RoutedEventHandler(OnGotFocus));
-                    element.AddHandler(Control.LostFocusEvent, new RoutedEventHandler(OnLostFocus));
+                    element.AddHandler(UIElement.GotFocusEvent, new RoutedEventHandler(OnGotFocus));
+                    element.AddHandler(UIElement.LostFocusEvent, new RoutedEventHandler(OnLostFocus));
                     element.Tag = element.Background;
                 }
                 else
                 {
-                    element.RemoveHandler(Control.GotFocusEvent, new RoutedEventHandler(OnGotFocus));
-                    element.RemoveHandler(Control.LostFocusEvent, new RoutedEventHandler(OnLostFocus));
+                    element.RemoveHandler(UIElement.GotFocusEvent, new RoutedEventHandler(OnGotFocus));
+                    element.RemoveHandler(UIElement.LostFocusEvent, new RoutedEventHandler(OnLostFocus));
                     element.Tag = null;
                 }
             }
@@ -47,14 +47,14 @@ namespace SharedUI_Lib.Behaviors
         private static void OnGotFocus(object sender, RoutedEventArgs e)
         {
             var element = sender as Control;
-            if (element.IsEnabled && (element is TextBoxBase && !((TextBoxBase)element).IsReadOnly))
+            if (element != null && (element.IsEnabled && (element is TextBoxBase && !((TextBoxBase)element).IsReadOnly)))
                 element.Background = new SolidColorBrush(Color.FromRgb(232, 237, 247));
         }
 
         private static void OnLostFocus(object sender, RoutedEventArgs e)
         {
             var element = sender as Control;
-            element.Background = element.Tag as Brush;
+            if (element != null) element.Background = element.Tag as Brush;
         }
     }
 }

@@ -11,18 +11,16 @@ namespace SharedUI_Lib.Behaviors
 
         private static void OnFocusedControlPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            Control ctl = sender as TextBox;
-            if (ctl == null)
-                ctl = sender as ComboBox;
+            Control ctl = sender as TextBox ?? (Control) (sender as ComboBox);
             if (ctl == null) return;
 
             if (e.NewValue != null)
             {
-                ctl.AddHandler(Control.PreviewKeyDownEvent, new KeyEventHandler(OnPreviewKeyDown));
+                ctl.AddHandler(UIElement.PreviewKeyDownEvent, new KeyEventHandler(OnPreviewKeyDown));
             }
             else if (e.OldValue != null)
             {
-                ctl.RemoveHandler(Control.PreviewKeyDownEvent, new KeyEventHandler(OnPreviewKeyDown));
+                ctl.RemoveHandler(UIElement.PreviewKeyDownEvent, new KeyEventHandler(OnPreviewKeyDown));
             }
         }
 
@@ -45,7 +43,7 @@ namespace SharedUI_Lib.Behaviors
                     var ctl = GetFocusedControl((UIElement)sender);
                     if (ctl != null && ctl is IInputElement)
                     {
-                        FocusManager.SetFocusedElement(ctl, (IInputElement)ctl);
+                        FocusManager.SetFocusedElement(ctl, ctl);
                     }
                 }
                 e.Handled = true;
@@ -75,11 +73,11 @@ namespace SharedUI_Lib.Behaviors
 
             if (e.NewValue != null)
             {
-                ctl.AddHandler(Control.PreviewKeyDownEvent, new KeyEventHandler(OnPreviewKeyDown));
+                ctl.AddHandler(UIElement.PreviewKeyDownEvent, new KeyEventHandler(OnPreviewKeyDown));
             }
             else if (e.OldValue != null)
             {
-                ctl.RemoveHandler(Control.PreviewKeyDownEvent, new KeyEventHandler(OnPreviewKeyDown));
+                ctl.RemoveHandler(UIElement.PreviewKeyDownEvent, new KeyEventHandler(OnPreviewKeyDown));
             }
         }
 

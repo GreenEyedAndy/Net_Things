@@ -12,9 +12,7 @@ namespace SharedUI_Lib.Behaviors
 
         private static void OnAcceptOnlyNumericsPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            Control ctl = sender as TextBox;
-            if (ctl == null)
-                ctl = sender as ComboBox;
+            Control ctl = sender as TextBox ?? (Control) (sender as ComboBox);
             if (ctl == null) return;
 
             if (e.NewValue != null)

@@ -14,9 +14,7 @@ namespace SharedUI_Lib.Behaviors
 
         private static void OnButtonPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            Control ctl = sender as TextBox;
-            if (ctl == null)
-                ctl = sender as ComboBox;
+            Control ctl = sender as TextBox ?? (Control) (sender as ComboBox);
             if (ctl == null) return;
 
             if (e.NewValue != null)
@@ -37,18 +35,20 @@ namespace SharedUI_Lib.Behaviors
                 if (ctl != null)
                 {
                     var exp = ctl.GetBindingExpression(TextBox.TextProperty);
-                    if (exp != null)
-                        exp.UpdateSource();
-                }
-                else if (sender is ComboBox)
-                {
-                    ctl = sender as ComboBox;
-                    var exp = ctl.GetBindingExpression(ComboBox.TextProperty);
-                    if (exp != null)
-                        exp.UpdateSource();
+                    exp?.UpdateSource();
                 }
                 else
-                    return;
+                {
+                    var box = sender as ComboBox;
+                    if (box != null)
+                    {
+                        ctl = box;
+                        var exp = ctl.GetBindingExpression(ComboBox.TextProperty);
+                        exp?.UpdateSource();
+                    }
+                    else
+                        return;
+                }
 
                 var button = GetButton((UIElement)sender);
                 if (button != null)
@@ -61,7 +61,7 @@ namespace SharedUI_Lib.Behaviors
             if (button == null) return;
             ButtonAutomationPeer peer = new ButtonAutomationPeer(button);
             IInvokeProvider invokeProv = peer.GetPattern(PatternInterface.Invoke) as IInvokeProvider;
-            invokeProv.Invoke();
+            invokeProv?.Invoke();
         }
 
         public static void SetButton(UIElement element, Button button)
