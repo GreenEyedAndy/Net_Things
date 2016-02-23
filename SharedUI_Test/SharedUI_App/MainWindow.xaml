@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="http://Neumann/SharedUI_Lib"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
@@ -11,5 +12,7 @@
             <controls:AppButton Content="OK" IsDefault="True" />
             <controls:AppButton Content="Cancel" IsCancel="True" />
             </StackPanel>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="42,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120">
+        </TextBox>
     </Grid>
 </Window>
