@@ -1,0 +1,30 @@
+﻿<dx:DXWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:SvnClientTests"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:views="clr-namespace:SvnClientTests.Views"
+    x:Class="SvnClientTests.MainWindow"
+    Title="DXApplication" Height="300" Width="600"
+    SnapsToDevicePixels="True" UseLayoutRounding="True"
+    >
+
+    <dx:BackgroundPanel>
+        <dxlc:LayoutControl>
+            <dxlc:LayoutGroup Orientation="Vertical">
+
+                <dxlc:LayoutItem Label="LayoutItem">
+                    <views:EventLogView/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="LayoutItem">
+                    <views:SvnActionsView/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutControl>
+    </dx:BackgroundPanel>
+
+</dx:DXWindow>
