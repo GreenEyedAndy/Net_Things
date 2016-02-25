@@ -7,7 +7,7 @@
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     xmlns:views="clr-namespace:SvnClientTests.Views"
     x:Class="SvnClientTests.MainWindow"
-    Title="SvnClientTests" Height="300" Width="600"
+    Title="SvnClientTests" Height="450" Width="533"
     SnapsToDevicePixels="True" UseLayoutRounding="True"
     >
 
@@ -19,7 +19,7 @@
                     <views:EventLogView/>
                 </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem Label="LayoutItem">
+                <dxlc:LayoutItem>
                     <views:SvnActionsView/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
