@@ -10,5 +10,7 @@
              d:DesignHeight="300" d:DesignWidth="300"
              MinHeight="160">
     <dx:BackgroundPanel>
+        <TextBox Text="{Binding LogText}" />
     </dx:BackgroundPanel>
 </UserControl>
+
