@@ -9,8 +9,8 @@
              DataContext="{dxmvvm:ViewModelSource Type=ViewModels:EventLogViewModel}"
              d:DesignHeight="300" d:DesignWidth="300"
              MinHeight="160">
-    <dx:BackgroundPanel>
-        <TextBox Text="{Binding LogText}" />
+    <dx:BackgroundPanel Height="160">
+        <TextBox Text="{Binding LogText}" TextWrapping="NoWrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
     </dx:BackgroundPanel>
 </UserControl>
 

@@ -19,13 +19,17 @@
     <dx:BackgroundPanel>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem Label="WorkDir">
-                <dxe:ButtonEdit />
+                <dxe:ButtonEdit Text="{Binding WorkdirPath}">
+                    <dxmvvm:Interaction.Behaviors>
+                        <dxmvvm:EventToCommand EventName="DefaultButtonClick" Command="{Binding ShowFileDialogCommand}" />
+                    </dxmvvm:Interaction.Behaviors>
+                </dxe:ButtonEdit>
             </dxlc:LayoutItem>
             <dxlc:LayoutGroup Header="Actions" View="GroupBox">
-                <Button>Checkout</Button>
-                <Button>Status</Button>
-                <Button>Update</Button>
-                <Button>Commit</Button>
+                <Button Command="{Binding CheckoutCommand}">Checkout</Button>
+                <Button Command="{Binding StatusCommand}">Status</Button>
+                <Button Command="{Binding UpdateCommand}">Update</Button>
+                <Button Command="{Binding CommitCommand}">Commit</Button>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
     </dx:BackgroundPanel>

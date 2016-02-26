@@ -2,6 +2,7 @@
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.POCO;
+using DevExpress.Xpo.Logger;
 
 namespace SvnClientTests.ViewModels
 {
@@ -10,11 +11,18 @@ namespace SvnClientTests.ViewModels
     {
         public EventLogViewModel()
         {
+            Messenger.Default.Register<SvnLogMessage>(this, OnSvnLogMessage);
             if (this.IsInDesignMode())
             {
                 InitializeDesignTimeData();
             }
         }
+
+        private void OnSvnLogMessage(SvnLogMessage svnLogMessage)
+        {
+            AddText(svnLogMessage.Text);
+        }
+
 
         private void InitializeDesignTimeData()
         {
