@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Reactive.Linq;
+using System.Threading;
 using DevExpress.Mvvm;
 using System.Windows.Input;
-using System.Windows.Threading;
-using DevExpress.Xpf.Bars;
 
 namespace RxDemo01.ViewModels
 {
@@ -14,25 +13,52 @@ namespace RxDemo01.ViewModels
 
         public MainViewModel()
         {
-            Logging = new GalleryCollection<string> {"Hallo"};
+            Logging = new ObservableCollection<string> {"Hallo"};
         }
 
-        private ICommand startCommand;
+        private ICommand startBufferCommand;
 
-        public ICommand StartCommand
+        public ICommand StartBufferCommand
         {
-            get { return startCommand ?? (startCommand = new DelegateCommand(StartExecute)); }
+            get { return startBufferCommand ?? (startBufferCommand = new DelegateCommand(StartBufferExecute)); }
         }
 
-        private void StartExecute()
+        private void StartBufferExecute()
         {
-            Logging.Add("Start pressed");
+            Logging.Add("Start Buffer pressed");
             subscription?.Dispose();
 
+            var uiContext = SynchronizationContext.Current;
             subscription = Observable.Interval(TimeSpan.FromSeconds(1))
                 .Buffer(2)
-                .ObserveOn(Dispatcher.CurrentDispatcher)
+                .ObserveOn(uiContext)
                 .Subscribe(list => Logging.Add(DateTime.Now.Second + ": Got " + list[0] + " and " + list[1]));
+        }
+
+        private ICommand startWindowCommand;
+
+        public ICommand StartWindowCommand
+        {
+            get { return startWindowCommand ?? (startWindowCommand = new DelegateCommand(StartWindowExecute)); }
+        }
+
+        private void StartWindowExecute()
+        {
+            Logging.Add("Start Window pressed");
+            subscription?.Dispose();
+
+            var uiContext = SynchronizationContext.Current;
+            subscription = Observable.Interval(TimeSpan.FromSeconds(1))
+                .Window(2)
+                .ObserveOn(uiContext)
+                .Subscribe(observable =>
+                {
+                    Logging.Add(DateTime.Now.Second + ": Starting new group");
+                    observable
+                    .ObserveOn(uiContext)
+                    .Subscribe(l => Logging.Add(DateTime.Now.Second + ": Saw " + l),
+                        () => Logging.Add(DateTime.Now.Second + ": ending group"));
+                });
         }
 
         private ICommand stopCommand;

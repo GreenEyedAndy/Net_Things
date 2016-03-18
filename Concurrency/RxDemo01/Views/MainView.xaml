@@ -22,7 +22,8 @@
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Height="45">
-                    <Button Content="Start" Command="{Binding StartCommand}" />
+                    <Button Content="Buffer" Command="{Binding StartBufferCommand}" />
+                    <Button Content="Window" Command="{Binding StartWindowCommand}" />
                     <Button Content="Stop" Command="{Binding StopCommand}" />
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
